@@ -1,7 +1,7 @@
-﻿'use client';
+'use client';
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { achievementsApi } from '@/api/achievementsApi';
+import { achievementsApi } from '@/api/achievements.api';
 import { DataTable } from '@/components/data/data-table';
 import { useState } from 'react';
 

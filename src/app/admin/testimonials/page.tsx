@@ -1,7 +1,7 @@
-﻿'use client';
+'use client';
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { testimonialsApi } from '@/api/testimonialsApi';
+import { testimonialsApi } from '@/api/testimonials.api';
 import { DataTable } from '@/components/data/data-table';
 import { useState } from 'react';
 

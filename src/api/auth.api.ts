@@ -1,8 +1,8 @@
-﻿import { apiClient } from '@/lib/axios';
+import { apiClient } from '@/lib/axios';
 import { AuthResponse, User, ApiResponse } from '@/types';
 
 export const authApi = {
-  register: (data: { name: string; email: string; password: string }) =>
+  register: (data: { firstName: string; lastName: string; email: string; password: string }) =>
     apiClient.post<AuthResponse>('/auth/register', data),
 
   login: (data: { email: string; password: string }) =>

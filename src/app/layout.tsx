@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Providers } from './providers';
+import { DottedSurfaceWrapper } from '@/components/ui/dotted-surface-wrapper';
 
 export const metadata: Metadata = {
   title: {
@@ -19,7 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <DottedSurfaceWrapper />
+          <div className="relative z-10">
+            {children}
+          </div>
+        </Providers>
       </body>
     </html>
   );

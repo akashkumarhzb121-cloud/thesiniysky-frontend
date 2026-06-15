@@ -1,4 +1,4 @@
-﻿import axios, { AxiosError, InternalAxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosError, InternalAxiosRequestConfig, AxiosResponse } from 'axios';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://thesiniysky-backend.onrender.com/api/v1';
 
@@ -8,10 +8,9 @@ export const apiClient = axios.create({
   timeout: 10000,
 });
 
-// Normalize response - handle endpoints that don't return statusCode
+// Normalize response
 apiClient.interceptors.response.use(
   (response: AxiosResponse) => {
-    // Ensure response has expected shape
     if (response.data && typeof response.data === 'object') {
       response.data = {
         success: response.data.success ?? true,
@@ -23,7 +22,6 @@ apiClient.interceptors.response.use(
     return response;
   },
   (error: AxiosError) => {
-    // Normalize error response
     if (error.response?.data && typeof error.response.data === 'object') {
       const data = error.response.data as any;
       error.response.data = {
@@ -57,7 +55,7 @@ apiClient.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Response interceptor for token refresh
+// Token refresh
 apiClient.interceptors.response.use(
   (response) => response,
   async (error: AxiosError) => {

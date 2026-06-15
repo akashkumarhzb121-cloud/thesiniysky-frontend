@@ -1,4 +1,4 @@
-﻿import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { authApi } from '@/api/auth.api';
 import { useAuthStore } from '@/stores/auth-store';
 import { useRouter } from 'next/navigation';
@@ -21,10 +21,21 @@ export function useLogin() {
 export function useRegister() {
   const login = useAuthStore((state) => state.login);
   const router = useRouter();
-  const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: authApi.register,
+    mutationFn: (data: { name: string; email: string; password: string }) => {
+      // Split name into firstName and lastName for backend
+      const nameParts = data.name.trim().split(' ');
+      const firstName = nameParts[0] || data.name;
+      const lastName = nameParts.slice(1).join(' ') || 'User';
+      
+      return authApi.register({
+        firstName,
+        lastName,
+        email: data.email,
+        password: data.password,
+      });
+    },
     onSuccess: async (response) => {
       const { accessToken, refreshToken } = response.data.data;
       // After register, fetch full user profile with role
@@ -33,7 +44,6 @@ export function useRegister() {
         login(userResponse.data.data, accessToken, refreshToken);
         router.push('/client');
       } catch {
-        // Fallback to response user if /me fails
         login(response.data.data.user, accessToken, refreshToken);
         router.push('/client');
       }
