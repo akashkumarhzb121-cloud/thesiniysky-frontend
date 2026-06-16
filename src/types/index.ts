@@ -6,7 +6,7 @@ export interface User {
   id: string;
   email: string;
   name: string;
-  role: UserRole;
+  role: UserRole | { name: string; displayName?: string; permissions?: any[]; [key: string]: any };
   avatar?: string;
   emailVerified: boolean;
   permissions: Permission[];

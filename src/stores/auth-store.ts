@@ -36,3 +36,19 @@ export const useAuthStore = create<AuthState>()(
     { name: 'auth-storage' }
   )
 );
+
+// Helper: Get role string from stored user
+export function getStoredRole(): string {
+  const state = useAuthStore.getState();
+  const role = state.user?.role;
+  if (!role) return '';
+  if (typeof role === 'string') return role;
+  if (typeof role === 'object' && role.name) return role.name;
+  return '';
+}
+
+// Helper: Check if stored user is admin
+export function isStoredUserAdmin(): boolean {
+  const role = getStoredRole();
+  return ['super_admin', 'admin', 'editor'].includes(role);
+}

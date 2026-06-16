@@ -3,6 +3,26 @@ import { authApi } from '@/api/auth.api';
 import { useAuthStore } from '@/stores/auth-store';
 import { useRouter } from 'next/navigation';
 
+// Helper: Extract role string from either string or populated object
+function getRoleString(role: any): string {
+  if (!role) return '';
+  if (typeof role === 'string') return role;
+  if (typeof role === 'object' && role.name) return role.name;
+  return '';
+}
+
+// Helper: Check if user has admin-level access
+function isAdminRole(role: any): boolean {
+  const roleStr = getRoleString(role);
+  return ['super_admin', 'admin', 'editor'].includes(roleStr);
+}
+
+// Helper: Check if user has strict admin access
+function isStrictAdmin(role: any): boolean {
+  const roleStr = getRoleString(role);
+  return ['super_admin', 'admin'].includes(roleStr);
+}
+
 export function useLogin() {
   const login = useAuthStore((state) => state.login);
   const router = useRouter();
@@ -12,7 +32,7 @@ export function useLogin() {
     onSuccess: (response) => {
       const { user, accessToken, refreshToken } = response.data.data;
       login(user, accessToken, refreshToken);
-      const dashboardPath = ['super_admin', 'admin', 'editor'].includes(user.role) ? '/admin' : '/client';
+      const dashboardPath = isAdminRole(user.role) ? '/admin' : '/client';
       router.push(dashboardPath);
     },
   });
@@ -24,7 +44,6 @@ export function useRegister() {
 
   return useMutation({
     mutationFn: (data: { name: string; email: string; password: string }) => {
-      // Split name into firstName and lastName for backend
       const nameParts = data.name.trim().split(' ');
       const firstName = nameParts[0] || data.name;
       const lastName = nameParts.slice(1).join(' ') || 'User';
@@ -38,14 +57,17 @@ export function useRegister() {
     },
     onSuccess: async (response) => {
       const { accessToken, refreshToken } = response.data.data;
-      // After register, fetch full user profile with role
       try {
         const userResponse = await authApi.getMe();
-        login(userResponse.data.data, accessToken, refreshToken);
-        router.push('/client');
+        const user = userResponse.data.data;
+        login(user, accessToken, refreshToken);
+        const dashboardPath = isAdminRole(user.role) ? '/admin' : '/client';
+        router.push(dashboardPath);
       } catch {
-        login(response.data.data.user, accessToken, refreshToken);
-        router.push('/client');
+        const user = response.data.data.user;
+        login(user, accessToken, refreshToken);
+        const dashboardPath = isAdminRole(user?.role) ? '/admin' : '/client';
+        router.push(dashboardPath);
       }
     },
   });
@@ -100,3 +122,6 @@ export function useDeleteAccount() {
     },
   });
 }
+
+// Export helpers for use in other files
+export { getRoleString, isAdminRole, isStrictAdmin };
