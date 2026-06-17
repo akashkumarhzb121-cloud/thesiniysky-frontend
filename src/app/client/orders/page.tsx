@@ -33,7 +33,7 @@ export default function ClientOrdersPage() {
                   <td className="py-3 px-4">{order.service?.title || 'N/A'}</td>
                   <td className="py-3 px-4"></td>
                   <td className="py-3 px-4">
-                    <span className={px-2 py-1 rounded text-xs capitalize }>{order.status}</span>
+                    <span className='px-2 py-1 rounded text-xs capitalize'>{order.status}</span>
                   </td>
                   <td className="py-3 px-4 text-gray-500">{new Date(order.createdAt).toLocaleDateString()}</td>
                 </tr>

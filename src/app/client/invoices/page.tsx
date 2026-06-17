@@ -31,7 +31,7 @@ export default function ClientInvoicesPage() {
                   <td className="py-3 px-4 font-medium">{invoice.invoiceNumber}</td>
                   <td className="py-3 px-4"></td>
                   <td className="py-3 px-4">
-                    <span className={px-2 py-1 rounded text-xs capitalize }>{invoice.status}</span>
+                    <span className='px-2 py-1 rounded text-xs capitalize'>{invoice.status}</span>
                   </td>
                   <td className="py-3 px-4 text-gray-500">{new Date(invoice.dueDate).toLocaleDateString()}</td>
                 </tr>

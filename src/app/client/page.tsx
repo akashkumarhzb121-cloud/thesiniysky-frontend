@@ -73,7 +73,7 @@ export default function ClientDashboard() {
                     <td className="py-3 px-4">{order.service?.title}</td>
                     <td className="py-3 px-4"></td>
                     <td className="py-3 px-4">
-                      <span className={px-2 py-1 rounded text-xs capitalize }>
+                      <span className='px-2 py-1 rounded text-xs capitalize'>
                         {order.status}
                       </span>
                     </td>
