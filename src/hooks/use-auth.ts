@@ -2,25 +2,20 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { authApi } from '@/api/auth.api';
 import { useAuthStore } from '@/stores/auth-store';
 import { useRouter } from 'next/navigation';
+import { UserRole } from '@/types';
 
-// Helper: Extract role string from either string or populated object
-function getRoleString(role: any): string {
-  if (!role) return '';
-  if (typeof role === 'string') return role;
-  if (typeof role === 'object' && role.name) return role.name;
-  return '';
-}
-
-// Helper: Check if user has admin-level access
-function isAdminRole(role: any): boolean {
-  const roleStr = getRoleString(role);
-  return ['super_admin', 'admin', 'editor'].includes(roleStr);
-}
-
-// Helper: Check if user has strict admin access
-function isStrictAdmin(role: any): boolean {
-  const roleStr = getRoleString(role);
-  return ['super_admin', 'admin'].includes(roleStr);
+// FIX 7 helper: _formatUser() returns `role` as the raw populated Mongoose document
+// e.g. { name: 'super_admin', displayName: 'Super Admin', ... } — not a plain string.
+// .includes(user.role) was comparing an object to strings → always false → admins
+// were always redirected to /client instead of /admin.
+// This helper safely extracts the string name regardless of what the backend sends.
+function extractRoleName(role: unknown): UserRole {
+  if (!role) return 'visitor';
+  if (typeof role === 'string') return role as UserRole;
+  if (typeof role === 'object' && role !== null && 'name' in role) {
+    return (role as { name: string }).name as UserRole;
+  }
+  return 'visitor';
 }
 
 export function useLogin() {
@@ -31,8 +26,16 @@ export function useLogin() {
     mutationFn: authApi.login,
     onSuccess: (response) => {
       const { user, accessToken, refreshToken } = response.data.data;
-      login(user, accessToken, refreshToken);
-      const dashboardPath = isAdminRole(user.role) ? '/admin' : '/client';
+
+      // FIX 7: normalise role to its string name before storing and comparing
+      const roleName = extractRoleName(user.role);
+      const normalizedUser = { ...user, role: roleName };
+
+      login(normalizedUser, accessToken, refreshToken);
+
+      const dashboardPath = ['super_admin', 'admin', 'editor'].includes(roleName)
+        ? '/admin'
+        : '/client';
       router.push(dashboardPath);
     },
   });
@@ -44,10 +47,11 @@ export function useRegister() {
 
   return useMutation({
     mutationFn: (data: { name: string; email: string; password: string }) => {
+      // Split name into firstName and lastName for backend
       const nameParts = data.name.trim().split(' ');
       const firstName = nameParts[0] || data.name;
       const lastName = nameParts.slice(1).join(' ') || 'User';
-      
+
       return authApi.register({
         firstName,
         lastName,
@@ -57,17 +61,17 @@ export function useRegister() {
     },
     onSuccess: async (response) => {
       const { accessToken, refreshToken } = response.data.data;
+      // After register, fetch full user profile with role
       try {
         const userResponse = await authApi.getMe();
-        const user = userResponse.data.data;
-        login(user, accessToken, refreshToken);
-        const dashboardPath = isAdminRole(user.role) ? '/admin' : '/client';
-        router.push(dashboardPath);
+        const userData = userResponse.data.data;
+        // FIX 7: normalise role from getMe() response too
+        const normalizedUser = { ...userData, role: extractRoleName(userData.role) };
+        login(normalizedUser, accessToken, refreshToken);
+        router.push('/client');
       } catch {
-        const user = response.data.data.user;
-        login(user, accessToken, refreshToken);
-        const dashboardPath = isAdminRole(user?.role) ? '/admin' : '/client';
-        router.push(dashboardPath);
+        login(response.data.data.user, accessToken, refreshToken);
+        router.push('/client');
       }
     },
   });
@@ -122,6 +126,3 @@ export function useDeleteAccount() {
     },
   });
 }
-
-// Export helpers for use in other files
-export { getRoleString, isAdminRole, isStrictAdmin };
