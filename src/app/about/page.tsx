@@ -164,7 +164,7 @@ export default function AboutPage() {
                         { icon: Briefcase, text: 'Full Stack Developer' },
                         { icon: GraduationCap, text: 'B.Tech CSE' },
                       ].map((item, i) => (
-                        <span key={i} className="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-3 py-1.5 rounded-full">
+                        <span key={exp._id || exp.company + '-' + i} className="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-3 py-1.5 rounded-full">
                           <item.icon className="w-4 h-4" />
                           {item.text}
                         </span>
@@ -206,7 +206,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {displayAchievements.map((achievement: any, i: number) => (
                 <motion.div
-                  key={i}
+                  key={exp._id || exp.company + '-' + i}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
@@ -261,7 +261,7 @@ export default function AboutPage() {
                   { icon: TrendingUp, label: 'Learning', color: 'text-green-500' },
                   { icon: Star, label: 'Open Source', color: 'text-yellow-500' },
                 ].map((item, i) => (
-                  <div key={i} className="text-center p-4 rounded-xl bg-gray-50 dark:bg-gray-800">
+                  <div key={exp._id || exp.company + '-' + i} className="text-center p-4 rounded-xl bg-gray-50 dark:bg-gray-800">
                     <item.icon className={`w-6 h-6 ${item.color} mx-auto mb-2`} />
                     <p className="text-sm text-gray-600 dark:text-gray-400">{item.label}</p>
                   </div>
@@ -292,7 +292,7 @@ export default function AboutPage() {
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {displaySkills.map((skill: any, i: number) => (
                   <motion.div
-                    key={skill.name}
+                    key={skill._id || skill.name + '-' + i}
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ delay: i * 0.05 }}
@@ -349,7 +349,7 @@ export default function AboutPage() {
                 <div className="space-y-8">
                   {displayExperiences.map((exp: any, i: number) => (
                     <motion.div
-                      key={i}
+                      key={exp._id || exp.company + '-' + i}
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.15 }}

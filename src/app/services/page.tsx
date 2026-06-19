@@ -39,7 +39,7 @@ export default function ServicesPage() {
           {data && data.data && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {data.data.map((service: any) => (
-                <div key={service.id} className="bg-white p-8 rounded-lg border hover:shadow-xl transition-shadow">
+                <div key={service._id || service.id || Math.random()} className="bg-white p-8 rounded-lg border hover:shadow-xl transition-shadow">
                   <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
                   <p className="text-gray-600 mb-4">{service.description}</p>
                   {service.features && (

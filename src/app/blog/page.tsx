@@ -81,7 +81,7 @@ export default function BlogPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {blogs.map((blog: any) => (
                 <BlogCard
-                  key={blog.id}
+                  key={blog._id || blog.id || Math.random()}
                   id={blog.id}
                   title={blog.title}
                   excerpt={blog.excerpt}
@@ -136,7 +136,7 @@ export default function BlogPage() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {trending.slice(0, 3).map((blog: any) => (
                   <BlogCard
-                    key={blog.id}
+                    key={blog._id || blog.id || Math.random()}
                     id={blog.id}
                     title={blog.title}
                     excerpt={blog.excerpt}
@@ -163,7 +163,7 @@ export default function BlogPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {featured.slice(0, 4).map((blog: any) => (
                   <BlogCard
-                    key={blog.id}
+                    key={blog._id || blog.id || Math.random()}
                     id={blog.id}
                     title={blog.title}
                     excerpt={blog.excerpt}
