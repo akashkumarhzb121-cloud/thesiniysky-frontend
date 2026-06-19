@@ -80,7 +80,7 @@ export default function HomePage() {
               <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}
                 className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <CoolMode>
-                  <Link href="/register" className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-full text-lg font-medium transition-all shadow-lg shadow-blue-600/25">
+                  <Link href="/contact" className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-full text-lg font-medium transition-all shadow-lg shadow-blue-600/25">
                     <span>Start Building</span><ChevronRight className="w-5 h-5" />
                   </Link>
                 </CoolMode>
@@ -200,7 +200,7 @@ export default function HomePage() {
             <h2 className="text-4xl font-bold mb-4">Ready to Get Started?</h2>
             <p className="text-xl opacity-90 mb-8">Join thousands of satisfied clients today.</p>
             <CoolMode>
-              <Link href="/register" className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-xl text-lg font-medium hover:bg-gray-100 transition-all">Start Free Trial<ArrowRight className="w-5 h-5" /></Link>
+              <Link href="/contact" className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-xl text-lg font-medium hover:bg-gray-100 transition-all">Start Free Trial<ArrowRight className="w-5 h-5" /></Link>
             </CoolMode>
           </div>
         </section>
