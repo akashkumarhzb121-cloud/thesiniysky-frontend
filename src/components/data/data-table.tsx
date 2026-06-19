@@ -60,7 +60,7 @@ export function DataTable<T extends { id: string }>({
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="bg-gray-50 dark:bg-gray-800">
-              <tr>
+              <tr key="empty-row">
                 {columns.map(col => (
                   <th key={col.key} className="text-left py-3 px-4 font-medium text-gray-600 dark:text-gray-300">
                     {col.header}
@@ -71,7 +71,7 @@ export function DataTable<T extends { id: string }>({
             </thead>
             <tbody>
               {paginatedData.length === 0 ? (
-                <tr>
+                <tr key="empty-row">
                   <td colSpan={columns.length + (onEdit || onDelete ? 1 : 0)} className="py-12 text-center text-gray-500 dark:text-gray-400">
                     {emptyMessage}
                   </td>

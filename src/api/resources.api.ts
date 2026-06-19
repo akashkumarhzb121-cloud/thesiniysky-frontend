@@ -1,4 +1,4 @@
-﻿import { apiClient } from '@/lib/axios';
+import { apiClient } from '@/lib/axios';
 import { Resource, PaginatedResponse, ApiResponse } from '@/types';
 
 export const resourcesApi = {
