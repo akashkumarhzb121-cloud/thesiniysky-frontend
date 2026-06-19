@@ -10,5 +10,5 @@ export const mediaApi = {
     });
   },
   list: () => apiClient.get<ApiResponse<MediaFile[]>>('/media/list'),
-  delete: (filename: string) => apiClient.post<ApiResponse<null>>('/media/delete', { filename }),
+  delete: (id: string) => apiClient.post<ApiResponse<null>>('/media/delete', { id }),
 };

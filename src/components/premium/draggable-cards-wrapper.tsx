@@ -47,7 +47,7 @@ export function DraggableCardsWrapper({ items, title, subtitle, className = '' }
       )}
       {items.map((item, index) => (
         <DraggableCardBody 
-          key={item.id} 
+          key={item.id || index} 
           className={positions[index % positions.length]}
         >
           {item.link ? (

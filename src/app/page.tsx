@@ -135,7 +135,7 @@ export default function HomePage() {
               <div className="text-center mb-12"><h2 className="text-4xl font-bold mb-4 dark:text-white">Our Services</h2><p className="text-xl text-gray-600 dark:text-gray-400">Comprehensive solutions for your business</p></div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {services.slice(0, 4).map((service: any) => (
-                  <Link key={service.id} href={'/services/' + service.slug}>
+                  <Link key={service.id || service._id} href={'/services/' + service.slug}>
                     <MagicCard gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"} className="h-full">
                       <div className="p-6 text-center">
                         <div className="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mx-auto mb-4"><Wrench className="w-7 h-7 text-blue-600 dark:text-blue-400" /></div>
@@ -175,7 +175,7 @@ export default function HomePage() {
               <div className="text-center mb-12"><h2 className="text-4xl font-bold mb-4 dark:text-white">Latest from Blog</h2><p className="text-xl text-gray-600 dark:text-gray-400">Insights, tutorials, and updates from our team</p></div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {blogs.slice(0, 4).map((blog: any) => (
-                  <Link key={blog.id} href={'/blog/' + blog.slug}>
+                  <Link key={blog.id || blog._id} href={'/blog/' + blog.slug}>
                     <MagicCard gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"} className="h-full">
                       <div className="p-6">
                         {blog.thumbnail && <img src={blog.thumbnail} alt={blog.title} className="w-full h-36 object-cover rounded-lg mb-4" />}
