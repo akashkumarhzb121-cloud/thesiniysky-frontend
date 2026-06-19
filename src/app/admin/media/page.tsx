@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
@@ -45,12 +45,12 @@ export default function AdminMediaPage() {
 
       {isLoading ? (
         <div className="text-center py-12">
-          <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-blue-600 border-t-transparent"></div>
+          <div key="loading-spinner" className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-blue-600 border-t-transparent"></div>
         </div>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {files?.map((file: any) => (
-            <div key={file.id} className="bg-white rounded-lg border overflow-hidden group relative">
+            <div key={file.id || file._id || file.filename} className="bg-white rounded-lg border overflow-hidden group relative">
               {file.mimeType?.startsWith('image/') ? (
                 <img src={file.url} alt={file.originalName} className="w-full h-32 object-cover" />
               ) : (

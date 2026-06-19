@@ -203,7 +203,7 @@ export function CardStack<T extends CardStackItem>({
             {items.map((it, idx) => {
               const on = idx === active;
               return (
-                <button key={it.id} onClick={() => setActive(idx)}
+                <button key={it.id || idx} onClick={() => setActive(idx)}
                   className={cn("h-2 w-2 rounded-full transition", on ? "bg-blue-600 dark:bg-blue-400" : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400")}
                   aria-label={`Go to ${it.title}`}
                 />

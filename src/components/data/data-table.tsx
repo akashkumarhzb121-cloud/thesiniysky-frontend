@@ -78,7 +78,7 @@ export function DataTable<T extends { id: string }>({
                 </tr>
               ) : (
                 paginatedData.map(item => (
-                  <tr key={item.id} className="border-t border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                  <tr key={item.id || item._id || Math.random()} className="border-t border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800/50">
                     {columns.map(col => (
                       <td key={col.key} className="py-3 px-4 dark:text-gray-300">
                         {col.render ? col.render(item) : (item as any)[col.key]}
