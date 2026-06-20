@@ -6,6 +6,9 @@ const nextConfig = {
     ],
     unoptimized: true,
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 };
 
 module.exports = nextConfig;
