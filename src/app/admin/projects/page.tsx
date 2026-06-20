@@ -72,7 +72,7 @@ export default function AdminProjectsPage() {
               const fd = new FormData(e.currentTarget);
               saveMutation.mutate(Object.fromEntries(fd));
             }} className="space-y-4">
-              <div><label className="block text-sm font-medium mb-1 dark:text-gray-300">Thumbnail URL</label><input name="thumbnail" defaultValue={editing?.thumbnail} className="w-full px-3 py-2 border dark:border-gray-600 rounded-lg dark:bg-gray-800 dark:text-white" placeholder="https://images.unsplash.com/..." /></div><div><label className="block text-sm font-medium mb-1 dark:text-gray-300">Title</label>
+              <div><label className="block text-sm font-medium mb-1 dark:text-gray-300">Thumbnail URL (<a href='/admin/media' target='_blank' className='text-blue-600 underline text-xs'>Upload Image</a>)</label><input name="thumbnail" defaultValue={editing?.thumbnail} className="w-full px-3 py-2 border dark:border-gray-600 rounded-lg dark:bg-gray-800 dark:text-white" placeholder="https://images.unsplash.com/..." /></div><div><label className="block text-sm font-medium mb-1 dark:text-gray-300">Title</label>
                 <input name="title" defaultValue={editing?.title} className="w-full px-3 py-2 border dark:border-gray-600 rounded-lg dark:bg-gray-800 dark:text-white" required />
               </div>
               <div>

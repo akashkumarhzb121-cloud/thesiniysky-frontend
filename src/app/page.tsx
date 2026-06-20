@@ -5,6 +5,7 @@ import { PublicFooter } from '@/components/layout/public-footer';
 import { useQuery } from '@tanstack/react-query';
 import { projectsApi } from '@/api/projects.api';
 import { blogsApi } from '@/api/blogs.api';
+import { resourcesApi } from '@/api/resources.api';
 import { servicesApi } from '@/api/services.api';
 import { testimonialsApi } from '@/api/testimonials.api';
 import { MagicCard } from '@/components/ui/magic-card';
@@ -49,6 +50,8 @@ export default function HomePage() {
   const projects = projectsData || [];
   const blogs = blogsData || [];
   const services = servicesData || [];
+  const { data: resourcesData } = useQuery({ queryKey: ['resources'], queryFn: () => resourcesApi.getAll().then(r => r.data.data) });
+  const resources = resourcesData || [];
   const testimonials = (testimonialsData || []).filter((t: any) => t.status === 'approved');
 
   return (
@@ -194,6 +197,33 @@ export default function HomePage() {
           </section>
         )}
 
+        
+        {/* RESOURCES SECTION */}
+        {resources.length > 0 && (
+          <section className="py-20 bg-gray-50/50 dark:bg-gray-950/50">
+            <div className="container mx-auto px-4">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl font-bold mb-4 dark:text-white">Resources</h2>
+                <p className="text-xl text-gray-600 dark:text-gray-400">Helpful downloads and guides</p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {resources.slice(0, 4).map((resource: any) => (
+                  <a key={resource._id || resource.id} href={resource.url} target="_blank" className="bg-white dark:bg-gray-900 p-6 rounded-2xl border dark:border-gray-700 hover:shadow-lg transition-shadow text-center">
+                    <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mx-auto mb-4">
+                      <FileText className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <h3 className="font-semibold dark:text-white mb-2">{resource.title}</h3>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">{resource.description}</p>
+                    <span className="text-xs text-blue-600 mt-3 inline-block capitalize">{resource.type}</span>
+                  </a>
+                ))}
+              </div>
+              <div className="text-center mt-10">
+                <Link href="/resources" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium">View All Resources <ArrowRight className="w-4 h-4" /></Link>
+              </div>
+            </div>
+          </section>
+        )}
         {/* CTA SECTION */}
         <section className="py-20 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
           <div className="container mx-auto px-4 text-center">
