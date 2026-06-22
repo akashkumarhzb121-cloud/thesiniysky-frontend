@@ -5,7 +5,7 @@ import { PublicFooter } from '@/components/layout/public-footer';
 import { useQuery } from '@tanstack/react-query';
 import { projectsApi } from '@/api/projects.api';
 import { blogsApi } from '@/api/blogs.api';
-import { resourcesApi } from '@/api/resources.api';
+
 import { servicesApi } from '@/api/services.api';
 import { testimonialsApi } from '@/api/testimonials.api';
 import { MagicCard } from '@/components/ui/magic-card';
@@ -50,8 +50,8 @@ export default function HomePage() {
   const projects = projectsData || [];
   const blogs = blogsData || [];
   const services = servicesData || [];
-  const { data: resourcesData } = useQuery({ queryKey: ['resources'], queryFn: () => resourcesApi.getAll().then(r => r.data.data) });
-  const resources = resourcesData || [];
+  
+  
   const testimonials = (testimonialsData || []).filter((t: any) => t.status === 'approved');
 
   return (
