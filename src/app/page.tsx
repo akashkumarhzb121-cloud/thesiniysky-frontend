@@ -197,7 +197,7 @@ export default function HomePage() {
           </section>
         )}
 
-         */}
+
         <section className="py-20 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-4xl font-bold mb-4">Ready to Get Started?</h2>
