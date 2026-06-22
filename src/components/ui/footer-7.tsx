@@ -217,11 +217,11 @@ export function Footer7({
           </p>
           
           <div className="flex items-center gap-6">
-            <Link href="#" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors relative group">
+            <Link href="/privacy" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors relative group">
               Privacy Policy
               <span className="absolute -bottom-1 left-0 w-0 h-px bg-blue-600 group-hover:w-full transition-all duration-300" />
             </Link>
-            <Link href="#" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors relative group">
+            <Link href="/privacy" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors relative group">
               Terms of Service
               <span className="absolute -bottom-1 left-0 w-0 h-px bg-blue-600 group-hover:w-full transition-all duration-300" />
             </Link>
