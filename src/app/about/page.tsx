@@ -164,7 +164,7 @@ export default function AboutPage() {
                         { icon: Briefcase, text: 'Full Stack Developer' },
                         { icon: GraduationCap, text: 'B.Tech CSE' },
                       ].map((item, i) => (
-                        <span key={exp._id || exp.company + '-' + i} className="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-3 py-1.5 rounded-full">
+                        <span key={expItem._id || expItem.company + '-' + i} className="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-3 py-1.5 rounded-full">
                           <item.icon className="w-4 h-4" />
                           {item.text}
                         </span>
@@ -206,7 +206,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {displayAchievements.map((achievement: any, i: number) => (
                 <motion.div
-                  key={exp._id || exp.company + '-' + i}
+                  key={expItem._id || expItem.company + '-' + i}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
@@ -261,7 +261,7 @@ export default function AboutPage() {
                   { icon: TrendingUp, label: 'Learning', color: 'text-green-500' },
                   { icon: Star, label: 'Open Source', color: 'text-yellow-500' },
                 ].map((item, i) => (
-                  <div key={exp._id || exp.company + '-' + i} className="text-center p-4 rounded-xl bg-gray-50 dark:bg-gray-800">
+                  <div key={expItem._id || expItem.company + '-' + i} className="text-center p-4 rounded-xl bg-gray-50 dark:bg-gray-800">
                     <item.icon className={`w-6 h-6 ${item.color} mx-auto mb-2`} />
                     <p className="text-sm text-gray-600 dark:text-gray-400">{item.label}</p>
                   </div>
@@ -347,9 +347,9 @@ export default function AboutPage() {
                 <div className="absolute left-5 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 via-purple-500 to-transparent hidden md:block" />
 
                 <div className="space-y-8">
-                  {displayExperiences.map((exp: any, i: number) => (
+                  {displayExperiences.map((expItem: any, i: number) => (
                     <motion.div
-                      key={exp._id || exp.company + '-' + i}
+                      key={expItem._id || expItem.company + '-' + i}
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.15 }}
@@ -357,34 +357,34 @@ export default function AboutPage() {
                       className="relative pl-14"
                     >
                       {/* Timeline dot */}
-                      <div className={`absolute left-3.5 top-1 w-4 h-4 rounded-full border-2 ${exp.current ? 'bg-blue-600 border-blue-600' : 'bg-white dark:bg-gray-900 border-gray-300 dark:border-gray-600'} z-10`} />
+                      <div className={`absolute left-3.5 top-1 w-4 h-4 rounded-full border-2 ${expItem.current ? 'bg-blue-600 border-blue-600' : 'bg-white dark:bg-gray-900 border-gray-300 dark:border-gray-600'} z-10`} />
                       
                       <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 hover:shadow-lg transition-all duration-300">
                         <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
                           <div>
-                            <h3 className="text-lg font-bold text-gray-900 dark:text-white">{exp.position}</h3>
-                            <p className="text-blue-600 dark:text-blue-400 font-medium">{exp.company}</p>
+                            <h3 className="text-lg font-bold text-gray-900 dark:text-white">{expItem.position}</h3>
+                            <p className="text-blue-600 dark:text-blue-400 font-medium">{expItem.company}</p>
                           </div>
                           <div className="flex items-center gap-2">
-                            {exp.current && (
+                            {expItem.current && (
                               <span className="px-2 py-0.5 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 text-xs rounded-full font-medium">Current</span>
                             )}
                             <span className="text-xs text-gray-500 dark:text-gray-400 capitalize px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded-full">
-                              {exp.type}
+                              {expItem.type}
                             </span>
                           </div>
                         </div>
                         
-                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{exp.description}</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{expItem.description}</p>
                         
                         <div className="flex flex-wrap items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
                           <span className="flex items-center gap-1">
                             <Calendar className="w-3 h-3" />
-                            {new Date(exp.startDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })} - {exp.current ? 'Present' : new Date(exp.endDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+                            {new Date(expItem.startDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })} - {expItem.current ? 'Present' : new Date(expItem.endDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
                           </span>
                           <span className="flex items-center gap-1">
                             <MapPin className="w-3 h-3" />
-                            {exp.location}
+                            {expItem.location}
                           </span>
                         </div>
                       </div>
