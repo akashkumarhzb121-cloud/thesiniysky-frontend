@@ -60,7 +60,7 @@ export default function AdminProjectsPage() {
         isLoading={isLoading}
         emptyMessage="No projects found"
         onEdit={(item) => setEditing(item)}
-        onDelete={(item) => { if (confirm('Delete this project?')) deleteMutation.mutate(item.id); }}
+        onDelete={(item) => { if (confirm('Delete this project?')) deleteMutation.mutate(item._id || item.id); }}
       />
 
       {(creating || editing) && (
