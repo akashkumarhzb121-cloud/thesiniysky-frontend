@@ -21,7 +21,7 @@ export default function AdminProjectsPage() {
   });
 
   const saveMutation = useMutation({
-    mutationFn: (formData: any) => editing ? projectsApi.update(editing.id, formData) : projectsApi.create(formData),
+    mutationFn: (formData: any) => editing ? projectsApi.update(editing._id || editing._id || editing.id, formData) : projectsApi.create(formData),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin-projects'] });
       setEditing(null);

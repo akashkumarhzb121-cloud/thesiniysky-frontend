@@ -21,7 +21,7 @@ export default function AdminBlogsPage() {
   });
 
   const saveMutation = useMutation({
-    mutationFn: (formData: any) => editing ? blogsApi.update(editing.id, formData) : blogsApi.create(formData),
+    mutationFn: (formData: any) => editing ? blogsApi.update(editing._id || editing._id || editing.id, formData) : blogsApi.create(formData),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin-'] });
       setEditing(null);

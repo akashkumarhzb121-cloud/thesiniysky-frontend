@@ -21,7 +21,7 @@ export default function AdminSkillsPage() {
   });
 
   const saveMutation = useMutation({
-    mutationFn: (formData: any) => editing ? skillsApi.update(editing.id, formData) : skillsApi.create(formData),
+    mutationFn: (formData: any) => editing ? skillsApi.update(editing._id || editing._id || editing.id, formData) : skillsApi.create(formData),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin-'] });
       setEditing(null);

@@ -21,7 +21,7 @@ export default function AdminAchievementsPage() {
   });
 
   const saveMutation = useMutation({
-    mutationFn: (formData: any) => editing ? achievementsApi.update(editing.id, formData) : achievementsApi.create(formData),
+    mutationFn: (formData: any) => editing ? achievementsApi.update(editing._id || editing._id || editing.id, formData) : achievementsApi.create(formData),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin-'] });
       setEditing(null);

@@ -21,7 +21,7 @@ export default function AdminExperiencePage() {
   });
 
   const saveMutation = useMutation({
-    mutationFn: (formData: any) => editing ? experienceApi.update(editing.id, formData) : experienceApi.create(formData),
+    mutationFn: (formData: any) => editing ? experienceApi.update(editing._id || editing._id || editing.id, formData) : experienceApi.create(formData),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin-'] });
       setEditing(null);

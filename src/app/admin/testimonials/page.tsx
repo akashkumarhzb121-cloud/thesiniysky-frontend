@@ -21,7 +21,7 @@ export default function AdminTestimonialsPage() {
   });
 
   const saveMutation = useMutation({
-    mutationFn: (formData: any) => editing ? testimonialsApi.update(editing.id, formData) : testimonialsApi.create(formData),
+    mutationFn: (formData: any) => editing ? testimonialsApi.update(editing._id || editing._id || editing.id, formData) : testimonialsApi.create(formData),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin-'] });
       setEditing(null);
