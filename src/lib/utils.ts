@@ -1,4 +1,4 @@
-﻿import { type ClassValue, clsx } from 'clsx';
+import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
@@ -30,4 +30,10 @@ export function slugify(text: string): string {
     .toLowerCase()
     .replace(/[^\w ]+/g, '')
     .replace(/ +/g, '-');
+}
+
+export function getImageUrl(url: string | undefined): string {
+  if (!url) return '';
+  if (url.startsWith('http')) return url;
+  return 'https://thesiniysky-backend.onrender.com' + (url.startsWith('/') ? '' : '/') + url;
 }
