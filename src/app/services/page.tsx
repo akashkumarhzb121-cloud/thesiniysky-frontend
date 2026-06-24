@@ -37,9 +37,7 @@ export default function ServicesPage() {
                 <Link key={service._id || service.id} href={'/services/' + service.slug} className="block group">
                   <MagicCard gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"} className="h-full">
                     <div className="p-8 text-center">
-                      <div className="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                        <Wrench className="w-7 h-7 text-blue-600 dark:text-blue-400" />
-                      </div>
+                      {service.icon ? <img src={service.icon} alt={service.title} className="w-full h-40 object-cover rounded-xl mb-4" /> : <div className="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mx-auto mb-4"><Wrench className="w-7 h-7 text-blue-600 dark:text-blue-400" /></div>}
                       <h3 className="text-xl font-semibold mb-3 dark:text-white group-hover:text-blue-600 transition-colors">{service.title}</h3>
                       <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">{service.description}</p>
                       {service.features && (
