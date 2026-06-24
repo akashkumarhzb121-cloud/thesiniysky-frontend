@@ -69,7 +69,7 @@ export default function AdminLeadsPage() {
         data={leadsData?.data || []}
         isLoading={isLoading}
         onEdit={(item) => setEditing(item)}
-        onDelete={(item) => { if (confirm('Delete this lead?')) deleteMutation.mutate(item._id || item.id); }}
+        onDelete={(id) => { if (confirm('Delete this item?')) deleteMutation.mutate(id); }}
       />
 
       {editing && (

@@ -46,7 +46,7 @@ export default function AdminAchievementsPage() {
         data={data?.data || []}
         isLoading={isLoading}
         onEdit={(item) => setEditing(item)}
-        onDelete={(item) => { if (confirm('Delete this item?')) deleteMutation.mutate(item._id || item.id); }}
+        onDelete={(id) => { if (confirm('Delete this item?')) deleteMutation.mutate(id); }}
       />
 
       {(creating || editing) && (
