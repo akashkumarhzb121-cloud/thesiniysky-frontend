@@ -10,12 +10,14 @@ import { Calendar, Clock, ArrowLeft } from 'lucide-react';
 function formatContent(text) {
   if (!text) return null;
   return text.split('\n').map((line, i) => {
-    const trimmed = line.trim();
+    let trimmed = line.trim();
     if (!trimmed) return <br key={i} />;
     if (trimmed.match(/^https?:\/\//)) return <a key={i} href={trimmed} target="_blank" className="text-blue-600 hover:underline break-all block mb-1">{trimmed}</a>;
-    if (trimmed.match(/^[A-Z][^a-z]{2,}:?$/)) return <h3 key={i} className="font-semibold mt-4 mb-2 text-lg">{trimmed}</h3>;
-    if (trimmed.match(/^[•\-*]\s/)) return <li key={i} className="ml-4 mb-1">{trimmed.replace(/^[•\-*]\s/, '')}</li>;
-    return <p key={i} className="mb-1">{trimmed}</p>;
+    if (trimmed.match(/link:\s*(https?:\/\/\S+)/)) { const m = trimmed.match(/link:\s*(https?:\/\/\S+)/); return <p key={i} className="mb-1">🔗 <a href={m[1]} target="_blank" className="text-blue-600 hover:underline break-all">{m[1]}</a></p>; }
+    const boldText = trimmed.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-gray-900 dark:text-white">$1</strong>');
+    if (trimmed.match(/^[A-Z][^a-z]{2,}:?$/) || trimmed.match(/^[A-Z\s]{5,}$/)) return <h3 key={i} className="font-bold text-xl mt-6 mb-3 text-gray-900 dark:text-white" dangerouslySetInnerHTML={{ __html: boldText }} />;
+    if (trimmed.match(/^[•\-*]\s/)) return <li key={i} className="ml-6 mb-1 text-gray-700 dark:text-gray-300 list-disc" dangerouslySetInnerHTML={{ __html: boldText.replace(/^[•\-*]\s/, '') }} />;
+    return <p key={i} className="mb-2 text-gray-700 dark:text-gray-300 leading-relaxed" dangerouslySetInnerHTML={{ __html: boldText }} />;
   });
 }
 
