@@ -121,3 +121,21 @@ body {
   /* Footer mobile */
   footer .grid { grid-template-columns: repeat(2, 1fr) !important; }
 }
+/* Dark Mode Text Visibility Fixes */
+.dark .text-gray-700 { color: #e5e7eb !important; }
+.dark .text-gray-600 { color: #d1d5db !important; }
+.dark .text-gray-500 { color: #9ca3af !important; }
+.dark .text-gray-900 { color: #f9fafb !important; }
+.dark .text-gray-800 { color: #f3f4f6 !important; }
+.dark .prose { color: #e5e7eb !important; }
+.dark .prose h1, .dark .prose h2, .dark .prose h3 { color: #f9fafb !important; }
+.dark .prose p, .dark .prose li { color: #d1d5db !important; }
+.dark .prose strong { color: #f9fafb !important; }
+.dark .prose a { color: #60a5fa !important; }
+.dark .bg-white { background-color: #111827 !important; }
+.dark .bg-gray-50 { background-color: #0f172a !important; }
+.dark .bg-blue-50 { background-color: #1e3a5f !important; }
+.dark .bg-green-50 { background-color: #14532d !important; }
+.dark .bg-yellow-50 { background-color: #713f12 !important; }
+.dark .text-blue-600 { color: #60a5fa !important; }
+.dark .text-green-600 { color: #4ade80 !important; }
