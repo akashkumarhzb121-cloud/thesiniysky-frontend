@@ -30,6 +30,7 @@ const achievements = [
   { title: 'Technologies', value: '30+', icon: '🛠️' },
 ];
 
+// TheSiniySky About Page
 export default function AboutPage() {
   return (
     <>
