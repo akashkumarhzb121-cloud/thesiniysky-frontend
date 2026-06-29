@@ -191,7 +191,7 @@ export function Footer7({
                         className="text-sm text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-2 group"
                       >
                         <span className="w-0 h-px bg-blue-600 dark:bg-blue-400 group-hover:w-2 transition-all duration-300" />
-                        {link.name}
+                        {link.className ? <span className={link.className}>{link.name}</span> : link.name}
                       </Link>
                     </motion.li>
                   ))}
