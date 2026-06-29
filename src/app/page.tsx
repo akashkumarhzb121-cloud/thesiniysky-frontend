@@ -65,18 +65,18 @@ export default function HomePage() {
               <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
                 <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-8 border border-white/20 dark:border-gray-700">
                   <Sparkles className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-                  <span className="text-sm text-gray-700 dark:text-gray-200">Next.js 16 + Premium SaaS Platform</span>
+                  <span className="text-sm text-gray-700 dark:text-gray-200 dark:text-gray-200">Next.js 16 + Premium SaaS Platform</span>
                 </div>
               </motion.div>
 
               <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }}
-                className="text-5xl md:text-7xl lg:text-8xl font-bold text-gray-900 dark:text-white tracking-tight leading-tight">
+                className="text-5xl md:text-7xl lg:text-8xl font-bold text-gray-900 dark:text-white dark:text-white tracking-tight leading-tight">
                 Build Faster with
                 <span className="block bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">TheSiniySky</span>
               </motion.h1>
 
               <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
-                className="mt-8 text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                className="mt-8 text-lg md:text-xl text-gray-600 dark:text-gray-300 dark:text-gray-300 max-w-2xl mx-auto">
                 Premium SaaS platform with modern design, powerful features, and lightning-fast performance.
               </motion.p>
 
@@ -87,7 +87,7 @@ export default function HomePage() {
                     <span>Start Building</span><ChevronRight className="w-5 h-5" />
                   </Link>
                 </CoolMode>
-                <Link href="/services" className="inline-flex items-center gap-2 bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 text-gray-900 dark:text-white px-8 py-4 rounded-full text-lg font-medium transition-all">
+                <Link href="/services" className="inline-flex items-center gap-2 bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 text-gray-900 dark:text-white dark:text-white px-8 py-4 rounded-full text-lg font-medium transition-all">
                   <span>View Services</span>
                 </Link>
               </motion.div>
@@ -103,7 +103,7 @@ export default function HomePage() {
                 <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: i * 0.1 }} viewport={{ once: true }}>
                   <stat.icon className="w-8 h-8 text-blue-600 mx-auto mb-2" />
                   <NumberTicker value={stat.value} className="text-3xl font-bold dark:text-white" decimalPlaces={stat.isDecimal ? 1 : 0} />
-                  <p className="text-gray-500 dark:text-gray-400">{stat.label}</p>
+                  <p className="text-gray-500 dark:text-gray-400 dark:text-gray-400">{stat.label}</p>
                 </motion.div>
               ))}
             </div>
@@ -116,7 +116,7 @@ export default function HomePage() {
             <div className="container mx-auto px-4">
               <div className="text-center mb-8">
                 <h2 className="text-4xl font-bold mb-4 dark:text-white">Featured Projects</h2>
-                <p className="text-xl text-gray-600 dark:text-gray-400">Drag or click to explore our latest work</p>
+                <p className="text-xl text-gray-600 dark:text-gray-300 dark:text-gray-400">Drag or click to explore our latest work</p>
               </div>
               <CardStack
                 items={projects.slice(0, 8).map((p: any) => ({ id: p.id, title: p.title, description: p.description, imageSrc: p.thumbnail || undefined, href: '/projects/' + p.slug, tag: p.category }))}
@@ -135,7 +135,7 @@ export default function HomePage() {
         {services.length > 0 && (
           <section className="py-20 bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm">
             <div className="container mx-auto px-4">
-              <div className="text-center mb-12"><h2 className="text-4xl font-bold mb-4 dark:text-white">Our Services</h2><p className="text-xl text-gray-600 dark:text-gray-400">Comprehensive solutions for your business</p></div>
+              <div className="text-center mb-12"><h2 className="text-4xl font-bold mb-4 dark:text-white">Our Services</h2><p className="text-xl text-gray-600 dark:text-gray-300 dark:text-gray-400">Comprehensive solutions for your business</p></div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {services.slice(0, 4).map((service: any) => (
                   <Link key={service.id || service._id} href={'/services/' + service.slug}>
@@ -143,7 +143,7 @@ export default function HomePage() {
                       <div className="p-6 text-center">
                         <div className="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mx-auto mb-4"><Wrench className="w-7 h-7 text-blue-600 dark:text-blue-400" /></div>
                         <h3 className="text-lg font-semibold mb-2 dark:text-white">{service.title}</h3>
-                        <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-3">{service.description}</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400 dark:text-gray-400 line-clamp-3">{service.description}</p>
                         {service.price && <p className="mt-3 text-blue-600 dark:text-blue-400 font-semibold text-sm">From ${service.price}</p>}
                       </div>
                     </MagicCard>
@@ -159,7 +159,7 @@ export default function HomePage() {
         {testimonials.length > 0 && (
           <section className="py-20 overflow-hidden">
             <div className="container mx-auto px-4 mb-12">
-              <div className="text-center"><h2 className="text-4xl font-bold mb-4 dark:text-white">What Our Clients Say</h2><p className="text-xl text-gray-600 dark:text-gray-400">Trusted by businesses worldwide</p></div>
+              <div className="text-center"><h2 className="text-4xl font-bold mb-4 dark:text-white">What Our Clients Say</h2><p className="text-xl text-gray-600 dark:text-gray-300 dark:text-gray-400">Trusted by businesses worldwide</p></div>
             </div>
             <div className="flex justify-center gap-6 overflow-hidden max-w-6xl mx-auto px-4">
               <TestimonialsColumn testimonials={testimonials.slice(0, Math.ceil(testimonials.length / 3)).map((t: any) => ({ text: t.content, image: t.avatar, name: t.name, role: t.role, company: t.company, rating: t.rating }))} duration={25} direction="down" className="hidden md:block" />
@@ -175,7 +175,7 @@ export default function HomePage() {
         {blogs.length > 0 && (
           <section className="py-20 bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm">
             <div className="container mx-auto px-4">
-              <div className="text-center mb-12"><h2 className="text-4xl font-bold mb-4 dark:text-white">Latest from Blog</h2><p className="text-xl text-gray-600 dark:text-gray-400">Insights, tutorials, and updates from our team</p></div>
+              <div className="text-center mb-12"><h2 className="text-4xl font-bold mb-4 dark:text-white">Latest from Blog</h2><p className="text-xl text-gray-600 dark:text-gray-300 dark:text-gray-400">Insights, tutorials, and updates from our team</p></div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {blogs.slice(0, 4).map((blog: any) => (
                   <Link key={blog.id || blog._id} href={'/blog/' + blog.slug}>
@@ -185,7 +185,7 @@ export default function HomePage() {
                         <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mb-3"><Newspaper className="w-5 h-5 text-purple-600 dark:text-purple-400" /></div>
                         <span className="text-xs text-blue-600 dark:text-blue-400 font-medium">{blog.category}</span>
                         <h3 className="text-lg font-semibold mt-1 mb-2 dark:text-white line-clamp-2">{blog.title}</h3>
-                        <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">{blog.excerpt}</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400 dark:text-gray-400 line-clamp-2">{blog.excerpt}</p>
                         <div className="flex items-center justify-between mt-3 text-xs text-gray-400"><span>{blog.readTime} min read</span><span>{blog.likes || 0} likes</span></div>
                       </div>
                     </MagicCard>

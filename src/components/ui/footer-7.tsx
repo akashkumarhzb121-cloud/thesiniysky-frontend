@@ -31,7 +31,7 @@ const defaultSections = [
   {
     title: "Company",
     links: [
-      { name: "About", href: "/about" },
+      { name: "<span class='font-bold text-blue-600 dark:text-blue-400'>About</span>", href: "/<span class='font-bold text-blue-600 dark:text-blue-400'>About</span>" },
       { name: "Blog", href: "/blog" },
       { name: "Careers", href: "/career" },
       { name: "Contact", href: "/contact" },
