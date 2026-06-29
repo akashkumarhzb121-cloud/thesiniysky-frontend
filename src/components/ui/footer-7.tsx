@@ -31,7 +31,7 @@ const defaultSections = [
   {
     title: "Company",
     links: [
-      { name: "<span class='font-bold text-blue-600 dark:text-blue-400'>About</span>", href: "/<span class='font-bold text-blue-600 dark:text-blue-400'>About</span>" },
+      { name: "About", href: "/about" },
       { name: "Blog", href: "/blog" },
       { name: "Careers", href: "/career" },
       { name: "Contact", href: "/contact" },
@@ -188,7 +188,7 @@ export function Footer7({
                     >
                       <Link
                         href={link.href}
-                        className="text-sm text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-2 group"
+                        className={link.name === "About" ? "text-sm font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700 transition-colors flex items-center gap-2 group" : "text-sm text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-2 group"}
                       >
                         <span className="w-0 h-px bg-blue-600 dark:bg-blue-400 group-hover:w-2 transition-all duration-300" />
                         {link.name}
