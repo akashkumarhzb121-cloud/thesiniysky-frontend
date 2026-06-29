@@ -33,7 +33,7 @@ export default function AdminBlogsPage() {
     { key: 'title', header: 'Title' },
     { key: 'category', header: 'Category' },
     { key: 'status', header: 'Status', render: (item: any) => <span className={item.status === 'published' ? 'px-2 py-1 rounded text-xs capitalize bg-green-50 text-green-600' : 'px-2 py-1 rounded text-xs capitalize bg-yellow-50 text-yellow-600'}>{item.status}</span> },
-    { key: 'createdAt', header: 'Date', render: (item: any) => new Date(item.createdAt).toLocaleDateString() },
+    { key: 'comments', header: 'Comments', render: (item: any) => (item.comments?.length || 0) + ' 💬' },\n    { key: 'createdAt', header: 'Date', render: (item: any) => new Date(item.createdAt).toLocaleDateString() },
   ];
 
   return (
