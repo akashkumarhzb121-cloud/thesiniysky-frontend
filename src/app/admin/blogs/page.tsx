@@ -99,9 +99,9 @@ export default function AdminBlogsPage() {
                     <div>
                       <div className="flex items-center gap-2 mb-1">
                         <div className="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-medium">
-                          {c.user?.firstName?.charAt(0) || c.user?.email?.charAt(0) || '?'}
+                          {typeof c.user === 'object' ? (c.user?.firstName?.charAt(0) || c.user?.email?.charAt(0) || '?') : 'U'}
                         </div>
-                        <p className="font-medium text-sm dark:text-white">{c.user?.firstName || c.user?.email || 'Anonymous'}</p>
+                        <p className="font-medium text-sm dark:text-white">{typeof c.user === 'object' ? (c.user?.firstName || c.user?.email || 'Anonymous') : 'User'}</p>
                         <span className="text-xs text-gray-500">{new Date(c.createdAt).toLocaleDateString()}</span>
                       </div>
                       <p className="text-gray-700 dark:text-gray-300 ml-9">{c.content}</p>
